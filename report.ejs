@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            table,th,tr{
+                border: 1px solid black;
+                text-align: center;
+                align-items: center;
+            }
+            th{
+                background-color: rgb(219, 231, 177);
+            }
+            tr{
+                background-color: darkgray;
+            }
+        </style>
+    </head>
+    <body>
+      <center>
+        <h1>Gulshan Pandey</h1>
+        <h2>Student id: <%= result[0].studentid %></h2>
+        <h3>Student Name:- <%=result[0].firstname%></h3>
+    
+      </center>
+        <center>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Subject</th>
+                   
+                    <th colspan="2">Prelim Exam</th>
+                    <th colspan="2">Terminal Exam</th>
+                    <th colspan="2">Final Exam</th>
+                    <th rowspan="2">Totak Marks</th>
+                   
+                </tr>
+                <tr>
+                    <th colspan="1">Theory Marks</th>
+                    <th colspan="1">Practical Marks</th>
+                    <th colspan="1">Theory Marks</th>
+                    <th colspan="1">Practical Marks</th>
+                    <th colspan="1">Theory Marks</th>
+                    <th colspan="1">Practical Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let final=0;%>
+                <% for(let i=0;i<result.length;i+=3){%>
+                <tr>
+                    <td><%=result[i].subjectname%></td>
+                 
+                    <% let total=0; %>
+                  <% for(let j=i;j<i+3;j++){%>
+                    <td><%=result[j].theorymarks_obt%></td>
+                     <td><%=result[j].practicalmarks_obt%></td>
+                     <%total=total+parseInt(result[j].theorymarks_obt)+parseInt(result[j].practicalmarks_obt)%>
+                  <%}%>
+                  <td><%=total%></td>
+                  <% final=final+total%>
+
+                   
+                </tr>
+                
+                <%} %>
+                <td colspan="8">Percentage<%=((final*100)/1200).toFixed(2)%>%</td>
+                
+                
+               
+            </tbody>
+        </table>
+    </center>
+    </body>
+</html>
